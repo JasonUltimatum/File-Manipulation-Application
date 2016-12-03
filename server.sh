@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#create tmp file
+cd bin/server
+
+TFILE="tfile.txt"
+
+echo "AAAAAAAAAAAAAAAAAAAAAAAA" > $TFILE
+echo "BBBBBBBBBBBBBBBBBBBBBBBB" >> $TFILE
+echo "CCCCCCCCCCCCCCCCCCCCCCCC" >> $TFILE
+echo "DDDDDDDDDDDDDDDDDDDDDDDD" >> $TFILE
+echo "EEEEEEEEEEEEEEEEEEEEEEEE" >> $TFILE
+
+chmod +r $TFILE
+
+./tserver -d -t 300 6000

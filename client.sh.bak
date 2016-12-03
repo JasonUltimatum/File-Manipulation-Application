@@ -1,0 +1,72 @@
+#!/bin/bash
+
+
+cd bin/client
+
+PORT=6000
+TFILE="tfile4.txt"
+
+#TEST FILETYPE_RSP
+if [ "$1" == "1" ]
+then
+./tclient $PORT filetype $TFILE
+fi
+
+#TEST FILETYPE_ERR
+if [ "$1" == "11" ]
+then
+./tclient $PORT filetype "/tmp/ntfile.txt"
+fi
+
+#TEST DOWNLOAD_RSP
+if [ "$1" == "2" ] 
+then
+./tclient $PORT checksum -o 0 -l 100 $TFILE
+fi
+
+#TEST DOWNLOAD_ERR due to offset
+if [ "$1" == "21" ] 
+then
+./tclient $PORT checksum -o 1000 -l 1000 $TFILE
+fi
+
+#TEST DOWNLOAD_ERR due to length
+if [ "$1" == "22" ] 
+then
+./tclient $PORT checksum -o 0 -l 1000 $TFILE
+fi
+
+#TEST DOWNLOAD_ERR due to no such file
+if [ "$1" == "23" ] 
+then
+./tclient $PORT checksum -o 0 -l 1000 ABC.$TFILE
+fi
+
+#TEST DOWNLOAD_RSP
+if [ "$1" == "3" ] 
+then
+./tclient $PORT download -o 0 -l 1000000 $TFILE
+fi
+
+#TEST DOWNLOAD_ERR due to offset
+if [ "$1" == "31" ] 
+then
+./tclient $PORT download -o 1000 -l 1000 $TFILE
+fi
+
+#TEST DOWNLOAD_ERR due to length
+if [ "$1" == "32" ] 
+then
+./tclient $PORT download -o 0 -l 1000 $TFILE
+fi
+
+#TEST DOWNLOAD_ERR due to no such file
+if [ "$1" == "33" ] 
+then
+./tclient $PORT download -o 0 -l 1000 ABC.$TFILE
+fi
+
+
+
+
+

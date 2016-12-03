@@ -1,0 +1,14 @@
+
+(1) COMPILE
+
+just type 'bash compile.sh'
+
+(2) RUN SERVER
+to start server just type "bash server.sh"
+
+(3) RUN CLIENT
+to start client just type "bash client.sh NUM"
+NUM can be  1 2 21 22 23 3 31 32 33
+different NUM for different test case
+meaning of NUM, refer to comment of client.sh
+
